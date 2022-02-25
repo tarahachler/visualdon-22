@@ -15,15 +15,44 @@
     <h1>Dessiner des formes</h1>
     <h2>Rectangle</h2>
 
-    <h2>Donut</h2>
+    <svg width="400" height="100" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
+      <rect id="rectangle" x="0" y="0" width="400" height="100" fill="red" stroke-width="5"/>
+      
+      </svg>
+    <h2>Donut</h2>
+     <svg width="600" height="600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      
+      <circle id="donDedans" cx="50" cy="50" r="30" stroke="black" fill="transparent" stroke-width="5" transform="translate(100 75)"/>
+      <circle id="donut" cx="50" cy="50" r="60" stroke="black" fill="transparent" stroke-width="5" transform="translate(100 75)"/>
+      
+      </svg>
 
     <h2>Ligne</h2>
-
+      <svg>
+      </svg>
 
     <h2>Path</h2>
-
-
+      
+        <svg height="100" width="50">
+         
+          <path id="t" d="M3 3 L24 3 M14 3 L14 36" fill="transparent" stroke="black" />
+          <circle cx="" cy="" r="5" fill="red">
+            <animateMotion dur="6s" repeatCount="indefinite">
+              <mpath xlink:href="#t"/>
+            </animateMotion>
+          </circle>
+          
+        </svg>
+        <svg height="100" width="50">
+          <path d="M24 36 L24 20 L13 3 L3 20 L3 36 M3 20 L24 20" stroke="black" fill="transparent"></path>
+          </svg>
+        <svg height="100" width="50">
+          <path d="M3 20 L20 20 L20 3 L3 3 L3 36 M16 20 L22 36" fill="transparent" stroke="black" />
+        </svg>
+        <svg height="100" width="50">
+          <path d="M24 36 L24 20 L13 3 L3 20 L3 36 M3 20 L24 20" stroke="black" fill="transparent"></path>
+          </svg>
     <h1>Animer des formes</h1>
 
     <h2>On click</h2>
