@@ -59,4 +59,8 @@ svg.selectAll('rect')
 .attr('height', d => d)
 .attr('width', 20)
 .attr('x',(d, i) =>  ((i*100)+10))
+<<<<<<< HEAD
 .attr('y', 300);
+=======
+.attr('y', 300);
+>>>>>>> 182b5d3ad7054b46910cf08de105560c2cede4c2
