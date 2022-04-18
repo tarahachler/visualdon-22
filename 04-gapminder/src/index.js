@@ -8,11 +8,12 @@ import population_totale from '../data/population_total.csv'
 import pib_par_habitant from '../data/income_per_person_gdppercapita_ppp_inflation_adjusted.csv'
 import esperance_de_vie from '../data/life_expectancy_years.csv'
 
+
 const populationTotale = [];
 population_totale.forEach(element => {
     let tabPays2021 = []
     tabPays2021.push(element['country']);
-    tabPays2021.push(element['2021']); //taille du cercle proportionnelle à ça
+    tabPays2021.push(element['2021']); //taille du cercle proportionnelle à ça //chiffre nbr population 2021
     
     populationTotale.push(tabPays2021);
     
@@ -101,6 +102,8 @@ svg1.append('g')
    .attr("transform", "translate(20, 0)")   
    .call(axeY);
 
+   //fonctionne au dessus
+
 
 //créer des cercles de la bonne taille et les placer au bon endroit
 
@@ -113,6 +116,38 @@ svg1.append('g')
     
 } */
 
+
+
+  
+  const tabCercles = svg1.selectAll("circle")
+    .data(pibParHabitant)
+    .enter()
+    .append("circle");
+
+  const unCercle = tabCercles
+                    .attr("cx", function(index) {
+                        return axeX(pibParHabitant[index][1]);
+                    });
+        
+                     /*    tabCercles.select("circle")
+                            .attr("cx", axeX(pibParHabitant[index][1]))
+                            .attr("cy", axeY(esperanceDeVie[index][1]))
+                            .attr("r", (populationTotale[index][1])/ 1000)
+                            .style("fill", "blue");
+                      }); */
+/*     .circle(i => {
+      i.attr("cx", axeX(pibParHabitant[i][1]))
+      .attr("cy", i => axeY(esperanceDeVie[i][1]))
+      .attr("r", i => (populationTotale[i][1])/ 1000)
+      .style("fill", "blue");
+    }) */
+
+/* 
+    .attr("cx", i => axeX(pibParHabitant[i][1]))
+    .attr("cy", i => axeY(esperanceDeVie[i][1]))
+    .attr("r", i => (populationTotale[i][1])/ 1000)
+    .style("fill", "blue"); */
+  
 
 
 //Partie 2 :
@@ -222,3 +257,79 @@ svg.append('circle')
 .attr("cy", projection([6.6412, 46.7785])[1])
 .attr("fill", "red")
 .attr("r", 3) */
+
+
+
+//Partie 3 :
+//Récupérer les donneés pour chaque année
+const popTotale = [];
+const espDeVie = [];
+const pib = [];
+
+for (let index = 1800; index <= 2100; index++) {
+  
+    population_totale.forEach(element => {
+    let tabPays = []
+    tabPays.push(element['country']);
+    tabPays.push(element[index]); //taille du cercle proportionnelle à ça //chiffre nbr population 
+    
+    popTotale.push(tabPays);
+    });
+  
+    population_totale.forEach(element => {
+    let tabPays = []
+    tabPays.push(element['country']);
+    tabPays.push(element[index]);
+    
+    espDeVie.push(tabPays);
+    });
+
+    
+    population_totale.forEach(element => {
+    let tabPays = []
+    tabPays.push(element['country']);
+    tabPays.push(element[index]);
+    
+    pib.push(tabPays);
+    });
+
+
+}
+
+//Créer les axes X et Y
+const div3 = d3.select("#partie3");
+
+
+const svg3 = div3.append('svg')
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+svg3.append('g')
+   .attr("transform", "translate(20," + height + ")")
+   .call(axeX);
+
+svg3.append('g')
+   .attr("transform", "translate(20, 0)")   
+   .call(axeY);
+
+popTotale.forEach(annee => {
+  selection.data(popTotale)
+  .join(enter => enter              
+    .append('circle')              
+    .attr('cx', d => d.valeur) 
+    .attr('cy', d => d.valeur)
+    .attr('r', d => d.valeur),    
+        update => update            
+        .append('circle')              
+        .attr('cx', d => d.valeur) 
+        .attr('cy', d => d.valeur)
+        .attr('r', d => d.valeur),      
+        exit => exit              
+    .remove()              
+    )
+    .append('circle');
+})
+
+//////////////////////
